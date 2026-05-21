@@ -2,6 +2,14 @@
 
 Lossless-claw reads plugin configuration from `plugins.entries.lossless-claw.config`.
 
+Lossless-claw requires OpenClaw `2026.5.19` or newer so the host can enforce
+context-engine runtime capabilities before an agent run starts. Agent runs need
+a host that assembles context before building the model prompt. Native Codex and
+Pi embedded runs provide that capability; generic CLI harnesses such as
+`claude-cli` and `codex-cli` do not. If you must use a generic CLI harness, set
+`plugins.slots.contextEngine` to `legacy` for that run instead of
+`lossless-claw`.
+
 Configuration precedence is:
 
 1. Environment variables

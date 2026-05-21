@@ -2896,6 +2896,15 @@ export class LcmContextEngine implements ContextEngine {
       version: "0.1.0",
       ownsCompaction: migrationOk,
       turnMaintenanceMode: "background",
+      hostRequirements: {
+        "agent-run": {
+          requiredCapabilities: ["assemble-before-prompt"],
+          unsupportedMessage: [
+            "lossless-claw requires a native OpenClaw runtime that assembles context before the model prompt.",
+            "Use the native Codex or Pi embedded runtime, or switch plugins.slots.contextEngine to legacy for CLI harness runs.",
+          ].join(" "),
+        },
+      },
     } as ContextEngineInfo;
 
     this.conversationStore = new ConversationStore(this.db, {
